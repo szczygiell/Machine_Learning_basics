@@ -21,9 +21,13 @@ class ConnectFour(Game):
         """
         self.first_player = first_player or Player(self.FIRST_PLAYER_DEFAULT_CHAR)
         self.second_player = second_player or Player(self.SECOND_PLAYER_DEFAULT_CHAR)
+        self.size = size
 
         state = ConnectFourState(size, self.first_player, self.second_player)
         super().__init__(state)
+
+    def kopiuj(self):
+        return ConnectFour(self.size, self.first_player, self.second_player)
 
 
 class ConnectFourMove(Move):
@@ -63,6 +67,9 @@ class ConnectFourState(State):
 
     def get_current_player(self) -> Player:
         return self._current_player
+    
+    def get_other_player(self) -> Player:
+        return self._other_player
 
     def make_move(self, move: ConnectFourMove) -> 'ConnectFourState':
         new_fields = [list(column) for column in self.fields]

@@ -28,6 +28,13 @@ class Game:
             Current player
         """
         return self.state.get_current_player()
+    
+    def get_other_player(self) -> Player:
+        """
+        Returns:
+            Other player
+        """
+        return self.state.get_other_player()
 
     def make_move(self, move: Move):
         """
